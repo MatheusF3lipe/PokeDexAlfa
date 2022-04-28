@@ -4,8 +4,11 @@
     <h1>{{ titulo }}</h1>
     <div class="card">
       <ul v-for="pokemon in pokemons" :key="pokemon.name">
-        <li buscarImg>
-          <p>{{ pokemon.name }}</p>
+        <li>
+          <p>
+            {{ pokemon.name }}
+          </p>
+          <span>{{ getImg(pokemon) }}</span>
         </li>
       </ul>
     </div>
@@ -15,7 +18,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "HelloWorld",
+  name: "Card",
   data() {
     return {
       titulo: "PokeDex",
@@ -30,8 +33,8 @@ export default {
       });
   },
   methods: {
-    buscarImg(pokemon) {
-      return pokemon.url.split("/");
+    getImg(pokemon) {
+      return pokemon.url.split("/")[6];
     },
   },
 };
@@ -52,11 +55,20 @@ export default {
       margin-bottom: 20px;
       text-align: center;
       padding-top: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       p {
-        font-size: 28px;
         color: aliceblue;
+        font-size: 28px;
       }
+
+      // span {
+      //   // display: inline-block;
+      //   // padding-top: 20px;
+      //   // color: aliceblue;
+      // }
     }
   }
 }
