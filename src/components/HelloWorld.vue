@@ -54,7 +54,7 @@ export default {
       padding-top: 15px;
 
       p {
-        font-size: 18px;
+        font-size: 28px;
         color: aliceblue;
       }
     }
