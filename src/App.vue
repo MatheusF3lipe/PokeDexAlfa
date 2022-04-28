@@ -44,6 +44,6 @@ export default {
 header {
   margin: 0 auto;
   width: 1300px;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 </style>
