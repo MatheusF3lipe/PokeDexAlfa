@@ -9,7 +9,9 @@
         placeholder="Busque aqui seu pokemon"
       />
     </header>
-    <Card></Card>
+    <div class="container">
+      <Card></Card>
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,9 @@ import Card from "./components/Card.vue";
 
 export default {
   name: "App",
+  created() {
+    document.title = "Poke Alfa";
+  },
   components: {
     Card,
   },
@@ -34,16 +39,28 @@ export default {
 #app {
   background: linear-gradient(to right, lightblue, darkblue);
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-}
 
-header {
-  margin: 0 auto;
-  width: 1300px;
-  padding-bottom: 40px;
+  header {
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 700px;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+    input {
+      width: 570px;
+      padding: 20px;
+      border: 3px solid black;
+      color: black;
+    }
+  }
+  .container {
+    margin: 0 80px;
+  }
 }
 </style>
