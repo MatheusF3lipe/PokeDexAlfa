@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <div class="card">
       <ul v-for="pokemon in pokemons" :key="pokemon.name">
-        <li>
+        <li @click="handleInfo(getImg(pokemon))">
           <p>
             {{ caseUp(pokemon) }}
           </p>
@@ -16,22 +16,27 @@
         </li>
       </ul>
     </div>
+    <div v-if="pokeInfo">
+      {{ pokeInfo }}
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
   name: "Card",
   data() {
     return {
       titulo: "PokeDex",
       pokemons: [],
+      pokeInfo: null,
     };
   },
   mounted() {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=151")
+      .get("https://pokeapi-215911.firebaseapp.com/api/v2/pokemon?limit=151")
       .then((response) => {
         this.pokemons = response.data.results;
       });
@@ -46,9 +51,13 @@ export default {
         .toUpperCase()
         .concat(pokemon.name.substring(1));
     },
-    HandleInfoPoke(pokemon) {
-      
-    }
+    handleInfo(id) {
+      axios
+        .get(`https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/${id}`)
+        .then((response) => {
+          this.pokeInfo = response.data.abilities;
+        });
+    },
   },
 };
 </script>
@@ -56,44 +65,47 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
-.card {
-  ul {
-    display: inline-block;
-    list-style: none;
-    font-family: "vt323";
+.container {
+  .card {
+    ul {
+      display: inline-block;
+      list-style: none;
+      font-family: "vt323";
 
-    li {
-      width: 400px;
-      height: 220px;
-      background: rgb(17, 17, 101);
-      margin-left: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-      padding-top: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      border: 2px solid rgb(1, 1, 34);
-      border-radius: 15px;
+      li {
+        width: 400px;
+        height: 220px;
+        background: rgb(17, 17, 101);
+        margin-left: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border: 2px solid rgb(1, 1, 34);
+        border-radius: 15px;
 
-      &:hover {
-        box-shadow: 5px 5px 5px 2px rgb(4, 2, 15);
-      }
+        &:hover {
+          box-shadow: 5px 5px 5px 2px rgb(4, 2, 15);
+        }
 
-      p {
-        color: aliceblue;
-        font-size: 40px;
-      }
+        p {
+          color: aliceblue;
+          font-size: 40px;
+        }
 
-      span {
-        font-size: 40px;
-      }
+        span {
+          font-size: 40px;
+        }
 
-      img {
-        width: 100px;
+        img {
+          width: 100px;
+        }
       }
     }
+    
   }
 }
 </style>
