@@ -26,7 +26,7 @@
       <div class="modal_container">
         <p>Nome: {{ caseUp(pokeInfo) }}</p>
         <p>Altura: {{ pokeInfo.height * 2.25 }} CM</p>
-        <p>Peso: {{ pokeInfo.weight }}</p>
+        <p>Peso: {{ pokeInfo.weight }} KG</p>
       </div>
     </div>
   </div>
@@ -131,8 +131,8 @@ export default {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 1920px;
-    padding: 80px;
+    width: 90%;
+    padding: 90px;
 
     &::before {
       content: "";
@@ -153,7 +153,6 @@ export default {
       justify-content: center;
       align-items: center;
       border-radius: 15px;
-      top: 0;
       bottom: 0;
       width: 500px;
     }
