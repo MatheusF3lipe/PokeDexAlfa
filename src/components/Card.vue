@@ -5,9 +5,10 @@
       name="nome"
       value=""
       placeholder="Busque aqui seu pokemon"
+      v-model="pesquisa"
     />
     <div class="card">
-      <ul v-for="pokemon in pokemons" :key="pokemon.name">
+      <ul v-for="pokemon in filtro" :key="pokemon">
         <li @click="handleInfo(getImg(pokemon))">
           <p>
             {{ caseUp(pokemon) }}
@@ -43,6 +44,7 @@ export default {
       pokemons: [],
       pokeInfo: null,
       modal: false,
+      pesquisa: "",
     };
   },
   mounted() {
@@ -52,6 +54,13 @@ export default {
         this.pokemons = response.data.results;
         this.modal = true;
       });
+  },
+  computed: {
+    filtro() {
+      return this.pokemons.filter((i) => {
+        return i.name.includes(this.pesquisa);
+      });
+    },
   },
   methods: {
     getImg(pokemon) {
@@ -68,12 +77,11 @@ export default {
         .get(`https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/${id}`)
         .then((response) => {
           this.pokeInfo = response.data;
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
         });
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     },
   },
 };

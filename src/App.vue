@@ -33,7 +33,6 @@ export default {
 #app {
   background: linear-gradient(to right, lightblue, darkblue);
   width: 100%;
-
   header {
     padding-bottom: 40px;
     display: flex;
@@ -46,7 +45,6 @@ export default {
       margin-bottom: 30px;
       margin-top: 20px;
     }
-    
   }
   .container {
     margin: 0 150px;
