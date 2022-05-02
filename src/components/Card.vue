@@ -150,6 +150,9 @@ export default {
       width: 100%;
       height: 100vh;
       background: rgba(0, 0, 0, 0.5);
+      @media (max-width: 450px) {
+        height: 100%;
+      }
     }
     .modal_container {
       position: relative;
@@ -163,6 +166,14 @@ export default {
       border-radius: 15px;
       bottom: 0;
       width: 500px;
+
+      @media (max-width: 450px) {
+        max-width: 300px;
+        margin: 0 auto;
+        display: flex;
+        position: relative;
+        left: 300px;
+      }
     }
 
     p {
@@ -177,6 +188,12 @@ export default {
     border: 3px solid black;
     color: black;
     margin: 20px 350px;
+
+    @media (max-width: 450px) {
+      width: 200px;
+      margin: 20px 110px;
+      margin-bottom: 20px;
+    }
   }
 }
 </style>
