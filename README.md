@@ -6,4 +6,5 @@ teste técnico realizado para a vaga de Desenvolvedor Front-end JR.
 </li>
   <li>Caso você já tenha inserir o comando "npm -i" ou "yarn" para instalar as depêndencia do projeto</li>
   <li>Dado que você já tenha instalado as depêndencias para rodar o projeto: "npm run serve" ou "yarn run"</li>
+  <li>Dar um git checkout para a master</li>
 </ul>
