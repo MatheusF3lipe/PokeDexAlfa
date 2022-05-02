@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <input
+      type="text"
+      name="nome"
+      value=""
+      placeholder="Busque aqui seu pokemon"
+    />
     <div class="card">
       <ul v-for="pokemon in pokemons" :key="pokemon.name">
         <li @click="handleInfo(getImg(pokemon))">
@@ -16,8 +22,12 @@
         </li>
       </ul>
     </div>
-    <div v-if="pokeInfo">
-      {{ pokeInfo }}
+    <div v-if="pokeInfo" class="modal">
+      <div class="modal_container">
+        <p>Nome: {{ caseUp(pokeInfo) }}</p>
+        <p>Altura: {{ pokeInfo.height * 2.25 }} CM</p>
+        <p>Peso: {{ pokeInfo.weight }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +42,7 @@ export default {
       titulo: "PokeDex",
       pokemons: [],
       pokeInfo: null,
+      modal: false,
     };
   },
   mounted() {
@@ -39,6 +50,7 @@ export default {
       .get("https://pokeapi-215911.firebaseapp.com/api/v2/pokemon?limit=151")
       .then((response) => {
         this.pokemons = response.data.results;
+        this.modal = true;
       });
   },
   methods: {
@@ -55,7 +67,7 @@ export default {
       axios
         .get(`https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/${id}`)
         .then((response) => {
-          this.pokeInfo = response.data.abilities;
+          this.pokeInfo = response.data;
         });
     },
   },
@@ -66,11 +78,12 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 .container {
+  font-family: "vt323";
+
   .card {
     ul {
       display: inline-block;
       list-style: none;
-      font-family: "vt323";
 
       li {
         width: 400px;
@@ -105,7 +118,50 @@ export default {
         }
       }
     }
-    
+  }
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 80px;
+
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .modal_container {
+      position: absolute;
+      z-index: 1;
+      background: rgb(17, 17, 101);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+    }
+
+    p {
+      font-size: 22px;
+      color: aliceblue;
+      margin-bottom: 15px;
+    }
+  }
+  input {
+    width: 570px;
+    padding: 20px;
+    border: 3px solid black;
+    color: black;
+    margin: 20px 350px;
   }
 }
 </style>

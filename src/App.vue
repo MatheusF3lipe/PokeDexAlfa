@@ -2,12 +2,6 @@
   <div id="app">
     <header>
       <img src="./assets/poke.webp" />
-      <input
-        type="text"
-        name="nome"
-        value=""
-        placeholder="Busque aqui seu pokemon"
-      />
     </header>
     <div class="container">
       <Card></Card>
@@ -52,15 +46,10 @@ export default {
       margin-bottom: 30px;
       margin-top: 20px;
     }
-    input {
-      width: 570px;
-      padding: 20px;
-      border: 3px solid black;
-      color: black;
-    }
+    
   }
   .container {
-    margin: 0 80px;
+    margin: 0 150px;
   }
 }
 </style>
