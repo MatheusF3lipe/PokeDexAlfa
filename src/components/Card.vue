@@ -22,7 +22,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="pokeInfo" class="modal">
+    <div v-if="pokeInfo" class="modal" @click="pokeInfo = null">
       <div class="modal_container">
         <p>Nome: {{ caseUp(pokeInfo) }}</p>
         <p>Altura: {{ pokeInfo.height * 2.25 }} CM</p>
@@ -68,6 +68,11 @@ export default {
         .get(`https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/${id}`)
         .then((response) => {
           this.pokeInfo = response.data;
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
         });
     },
   },
@@ -124,9 +129,9 @@ export default {
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 0;
     left: 0;
-    width: 100%;
+    bottom: 0;
+    width: 1920px;
     padding: 80px;
 
     &::before {
@@ -139,7 +144,7 @@ export default {
       background: rgba(0, 0, 0, 0.5);
     }
     .modal_container {
-      position: absolute;
+      position: relative;
       z-index: 1;
       background: rgb(17, 17, 101);
       padding: 25px;
@@ -148,6 +153,9 @@ export default {
       justify-content: center;
       align-items: center;
       border-radius: 15px;
+      top: 0;
+      bottom: 0;
+      width: 500px;
     }
 
     p {
